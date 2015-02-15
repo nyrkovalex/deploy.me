@@ -31,16 +31,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 public class SetParserTest extends JsonTest {
+
     @Mock private ScriptParser scriptParser;
     @Mock private Script script1;
     @Mock private Script script2;
     @InjectMocks private ScriptSetParser parser;
-    
+
     @Test
     public void testShouldShouldParseScripts() {
         when(scriptParser.parse("foo", jsonElement())).thenReturn(script1);
         when(scriptParser.parse("bar", jsonElement())).thenReturn(script2);
         Set<Script> parsed = parser.parse(jsonObject());
         assertThat(parsed, is(ImmutableSet.of(script1, script2)));
-   }
+    }
 }

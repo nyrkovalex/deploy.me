@@ -59,8 +59,7 @@ public class Parser {
     private DeploymentDescriptor parse(String source) {
         return deploymentDescriptorParser.parse(new JsonParser().parse(source));
     }
-    
-    
+
     public static DeploymentDescriptor read(String source) {
         return new Parser().parse(source);
     }
@@ -82,6 +81,7 @@ class DeploymentDescriptorParser {
 }
 
 class ApplicationSetParser extends SetParser<Application> {
+
     public ApplicationSetParser(ApplicationParser applicationParser) {
         super(applicationParser);
     }
@@ -141,6 +141,7 @@ class ServerSetParser {
 }
 
 class FilesetSetParser extends SetParser<Fileset> {
+
     FilesetSetParser(FilesetParser filesetParser) {
         super(filesetParser);
     }
@@ -163,12 +164,14 @@ class FilesetParser implements BasicParser<Fileset> {
 }
 
 class ScriptSetParser extends SetParser<Script> {
+
     public ScriptSetParser(ScriptParser scriptParser) {
         super(scriptParser);
     }
 }
 
 class ScriptParser implements BasicParser<Script> {
+
     @Override
     public Script parse(String path, JsonElement locations) {
         Iterable<String> targets = locations.isJsonArray()
@@ -196,5 +199,6 @@ abstract class SetParser<T> {
 }
 
 interface BasicParser<T> {
+
     T parse(String name, JsonElement content);
 }

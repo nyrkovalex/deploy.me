@@ -31,28 +31,23 @@ import java.util.Set;
 import static java.util.stream.Collectors.toSet;
 
 public final class TemplateReader {
+
     private TemplateReader() {
     }
 
     static Set<ScpTemplate> fromDescriptor(DeploymentDescriptor dd, RunSpec runSpec) {
         return dd.applications().stream()
                 .filter(runSpec::shouldRun)
-                .flatMap(app -> {
-                    return app.servers().stream()
-                    .filter(runSpec::shouldRun)
-                    .map(server -> {
-                        Iterable<ScpFile> files = server.filesets().stream()
-                        .flatMap(fileset -> fileset.scripts().stream()
-                                .flatMap(script -> {
-                                    String source = Seed.Strings.join(
-                                            "/", app.name(), server.name(), script.source());
-                                    return script.targets().stream()
-                                    .map(target -> new ScpFile(source,
-                                                    Seed.Strings.join("/", target, script.source())));
-                                }))
-                        .collect(toSet());
-                        return new ScpTemplate(server.address(), server.user(), files);
-                    });
-                }).collect(toSet());
+                .flatMap(app -> app.servers().stream()
+                        .filter(runSpec::shouldRun)
+                        .map(server -> new ScpTemplate(server.address(), server.user(), server.filesets().stream()
+                                        .flatMap(fileset -> fileset.scripts().stream()
+                                                .flatMap(script -> script.targets().stream()
+                                                        .map(target -> new ScpFile(
+                                                                        Seed.Strings.join(
+                                                                                "/", app.name(), server.name(), script.source()),
+                                                                        Seed.Strings.join("/", target, script.source())))))
+                                        .collect(toSet())))
+                ).collect(toSet());
     }
 }

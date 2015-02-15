@@ -41,19 +41,19 @@ public class ApplicationParserTest extends JsonTest {
 
     private Set<Fileset> filesets;
     private Set<Server> servers;
-    
+
     @Before
     public void setUp() {
         filesets = ImmutableSet.of();
         servers = ImmutableSet.of();
     }
-    
+
     @Test
     public void testShouldSetApplicationName() {
         Application parsed = parser.parse("foo", jsonElement());
         assertThat(parsed.name(), is("foo"));
     }
-    
+
     @Test
     public void testShouldParseServers() {
         when(filesetParser.parse(jsonObject())).thenReturn(filesets);

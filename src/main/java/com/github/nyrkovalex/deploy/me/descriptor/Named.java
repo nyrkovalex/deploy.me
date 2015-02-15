@@ -24,12 +24,13 @@
 package com.github.nyrkovalex.deploy.me.descriptor;
 
 public abstract class Named {
+
     private final String name;
 
     public Named(String name) {
         this.name = name;
     }
-    
+
     public String name() {
         return name;
     }

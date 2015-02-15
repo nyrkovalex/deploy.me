@@ -34,7 +34,7 @@ public class DeploymentDescriptorParserTest extends JsonTest {
 
     @Mock ApplicationSetParser applicationParser;
     @InjectMocks DeploymentDescriptorParser parser;
-    
+
     @Test
     public void testShouldParseApplications() {
         ImmutableSet<Application> apps = ImmutableSet.of();

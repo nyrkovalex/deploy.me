@@ -30,7 +30,7 @@ import com.github.nyrkovalex.seed.test.Seed;
 import org.mockito.Mock;
 
 public class RunSpecTest extends Seed.Test {
-    
+
     @Mock Application app;
     @Mock Server server;
 
@@ -40,21 +40,21 @@ public class RunSpecTest extends Seed.Test {
         assertThat(spec.shouldRun(app));
         assertThat(spec.shouldRun(server));
     }
-    
+
     @Test
     public void testShouldRejectApplication() {
         RunSpec spec = RunSpec.forSpec("foo");
         when(app.name()).thenReturn("bar");
         assertThat(!spec.shouldRun(app));
     }
-    
+
     @Test
     public void testShouldAllowApplication() {
         RunSpec spec = RunSpec.forSpec("foo");
         when(app.name()).thenReturn("foo");
         assertThat(spec.shouldRun(app));
     }
-    
+
     @Test
     public void testShouldRejectServer() {
         RunSpec spec = RunSpec.forSpec("foo:bar");
@@ -62,7 +62,7 @@ public class RunSpecTest extends Seed.Test {
         when(server.name()).thenReturn("fizz");
         assertThat(!spec.shouldRun(server));
     }
-    
+
     @Test
     public void testShouldAllowServer() {
         RunSpec spec = RunSpec.forSpec("foo:bar");

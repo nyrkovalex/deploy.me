@@ -4,7 +4,7 @@
             "localhost": {
                 "address": "localhost",
                 "user": "user",
-                "filesets": [ "development" ]
+                "filesets": ["development"]
             }
         },
         "filesets": {
@@ -18,7 +18,7 @@
             "local": {
                 "address": "127.0.0.1",
                 "user": "user",
-                "filesets": [ "scripts" ]
+                "filesets": ["scripts"]
             }
         },
         "filesets": {

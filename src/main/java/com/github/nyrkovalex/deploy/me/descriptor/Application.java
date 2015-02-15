@@ -21,15 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.github.nyrkovalex.deploy.me.descriptor;
 
-import com.github.nyrkovalex.deploy.me.scp.ScpTemplate;
 import com.google.common.collect.ImmutableSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class Application extends Named {
+
     private final Set<Server> servers;
 
     public Application(String name, Iterable<Server> servers) {
@@ -58,6 +57,5 @@ public class Application extends Named {
         return Objects.equals(this.servers(), other.servers())
                 && Objects.equals(this.name(), other.name());
     }
-    
-    
+
 }

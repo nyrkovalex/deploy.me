@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.github.nyrkovalex.deploy.me.descriptor;
 
 import com.github.nyrkovalex.deploy.me.scp.ScpTemplate;
@@ -31,12 +30,13 @@ import com.google.common.collect.ImmutableSet;
 import java.util.Set;
 
 public class DeploymentDescriptor {
+
     private final Set<Application> applications;
 
     public DeploymentDescriptor(Iterable<Application> applications) {
         this.applications = ImmutableSet.copyOf(applications);
     }
-    
+
     public Set<Application> applications() {
         return this.applications;
     }

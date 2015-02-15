@@ -65,7 +65,7 @@ public class ServerParserTest extends JsonTest {
     public void testShouldExtractFilesets() {
         assertThat(parsed.filesets(), is(ImmutableSet.of(fileset)));
     }
-    
+
     @Test
     public void testShouldParseUser() {
         assertThat(parsed.user(), is("dude"));

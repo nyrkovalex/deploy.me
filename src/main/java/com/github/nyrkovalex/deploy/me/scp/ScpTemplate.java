@@ -27,7 +27,7 @@ import com.google.common.collect.ImmutableSet;
 import java.util.Set;
 
 public class ScpTemplate {
-    
+
     private final String server;
     private final Set<ScpFile> scripts;
     private final String user;

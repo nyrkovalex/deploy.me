@@ -36,11 +36,11 @@ public class ScriptParserTest extends JsonTest {
     private static final String SIMPLE_JSON = "{\n"
             + "        \"config.json\": \"/home/user/deployment\"\n"
             + "    }";
-    
+
     private static final String ARRAY_TARGETS_JSON = "{\n"
             + "        \"config.json\": [ \"/home/user/deployment\", \"/home/test\" ]\n"
             + "    }";
-    
+
     private Script parse(String what) throws JsonSyntaxException {
         JsonElement parsed = readJson(what);
         JsonObject parsedObject = parsed.getAsJsonObject();
@@ -53,13 +53,13 @@ public class ScriptParserTest extends JsonTest {
         Script script = parse(SIMPLE_JSON);
         assertThat(script.source(), is("config.json"));
     }
-    
+
     @Test
     public void testShouldReadScriptTargetFromSimpleEntry() {
         Script script = parse(SIMPLE_JSON);
         assertThat(script.targets(), is(ImmutableSet.of("/home/user/deployment")));
     }
-    
+
     @Test
     public void testShouldReadScriptWithTargetArray() {
         Script script = parse(ARRAY_TARGETS_JSON);
@@ -67,6 +67,5 @@ public class ScriptParserTest extends JsonTest {
                 "/home/user/deployment", "/home/test"
         )));
     }
-     
 
 }

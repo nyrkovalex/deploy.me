@@ -30,41 +30,41 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 public interface RunSpec {
-
+    
     boolean shouldRun(Application app);
-
+    
     boolean shouldRun(Server server);
-
+    
     static RunSpec forSpec(String spec) {
         return new LimitedRunSpec(spec);
     }
-
+    
     static RunSpec empty() {
         return new EmptyRunSpec();
     }
 }
 
 class LimitedRunSpec implements RunSpec {
-
+    
     private final static Logger LOG = Logger.getLogger(LimitedRunSpec.class.getName());
-
+    
     private final String appSpec;
     private final Optional<String> serverSpec;
-
+    
     public LimitedRunSpec(String specString) {
         String[] splitted = specString.split(":");
         Preconditions.checkArgument(splitted.length <= 2);
         this.appSpec = splitted[0];
         this.serverSpec = splitted.length == 2 ? Optional.of(splitted[1]) : Optional.empty();
     }
-
+    
     @Override
     public boolean shouldRun(Application app) {
         boolean shouldRun = app.name().equals(appSpec);
         logIfSkipped(shouldRun, "application", app.name());
         return shouldRun;
     }
-
+    
     @Override
     public boolean shouldRun(Server server) {
         boolean shouldRun = serverSpec.isPresent()
@@ -73,7 +73,7 @@ class LimitedRunSpec implements RunSpec {
         logIfSkipped(shouldRun, "server", server.name());
         return shouldRun;
     }
-
+    
     private void logIfSkipped(boolean shouldRun, String kind, String name) {
         if (!shouldRun) {
             LOG.fine(() -> String.format("%s %s didn't match runspec, skipping", kind, name));
@@ -82,15 +82,15 @@ class LimitedRunSpec implements RunSpec {
 }
 
 class EmptyRunSpec implements RunSpec {
-
+    
     @Override
     public boolean shouldRun(Application app) {
         return true;
     }
-
+    
     @Override
     public boolean shouldRun(Server server) {
         return true;
     }
-
+    
 }

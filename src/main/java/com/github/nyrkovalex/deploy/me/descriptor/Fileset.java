@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.github.nyrkovalex.deploy.me.descriptor;
 
 import com.google.common.collect.ImmutableSet;
@@ -29,6 +28,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Fileset extends Named {
+
     private final Set<Script> scripts;
 
     public Fileset(String name, Iterable<Script> scripts) {
@@ -44,7 +44,7 @@ public class Fileset extends Named {
     public int hashCode() {
         return Objects.hash(this.scripts(), this.name());
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -57,6 +57,5 @@ public class Fileset extends Named {
         return Objects.equals(this.scripts(), other.scripts())
                 && Objects.equals(this.name(), other.name());
     }
-    
-    
+
 }

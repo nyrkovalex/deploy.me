@@ -30,7 +30,7 @@ public class ServerTest extends Seed.Test {
 
     @Test
     public void testShouldCollectFilesetScripts() {
-        
+
     }
-    
+
 }

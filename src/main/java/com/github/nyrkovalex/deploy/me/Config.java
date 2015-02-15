@@ -24,6 +24,7 @@
 package com.github.nyrkovalex.deploy.me;
 
 public class Config {
+
     static final String DD_FILENAME = "deploy.json";
 
     private final String workingDir;
@@ -36,17 +37,17 @@ public class Config {
 
     Config(String workingDir) {
         this.workingDir = sanitize(workingDir);
-        this.runSpec = RunSpec.empty(); 
+        this.runSpec = RunSpec.empty();
     }
 
     public String workingDir() {
         return workingDir;
     }
-    
+
     public String descriptorPath() {
         return workingDir + DD_FILENAME;
     }
-    
+
     public RunSpec runSpec() {
         return runSpec;
     }

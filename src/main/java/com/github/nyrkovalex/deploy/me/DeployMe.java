@@ -35,23 +35,24 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 public class DeployMe {
+
     private static final Logger LOG = Logger.getLogger(DeployMe.class.getName());
 
-    public static void main(String[] args) throws Exception {    
+    public static void main(String[] args) throws Exception {
         initLogging(args);
         Config cfg = parseArgs(args);
         String str = Seed.Files.readToString(cfg.descriptorPath());
         DeploymentDescriptor dd = Parser.read(str);
         Set<ScpTemplate> templates = TemplateReader.fromDescriptor(dd, cfg.runSpec());
-        
+
         for (ScpTemplate t : templates) {
             ScpCommand scpCommand = Ssh.scpTo(t.server());
             t.scripts().forEach(s -> {
                 LOG.fine(() -> String.format(
                         "Sending %s to %s on %s", s.localPath(), s.remotePath(), t.server()));
                 scpCommand.file(
-                    Seed.Strings.join("/", cfg.workingDir(), s.localPath()),
-                    s.remotePath());
+                        Seed.Strings.join("/", cfg.workingDir(), s.localPath()),
+                        s.remotePath());
             });
             scpCommand.asUser(t.user());
             scpCommand.run();

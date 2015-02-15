@@ -24,6 +24,7 @@
 package com.github.nyrkovalex.deploy.me.scp;
 
 public class ScpFile {
+
     private final String localPath;
     private final String remotePath;
 

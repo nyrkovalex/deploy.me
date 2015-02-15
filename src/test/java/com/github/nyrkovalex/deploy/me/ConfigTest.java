@@ -46,12 +46,12 @@ public class ConfigTest extends Seed.Test {
     public void testShouldReturnDescriptorPath() {
         assertThat(cfg.descriptorPath(), is("test/" + Config.DD_FILENAME));
     }
-    
+
     @Test
     public void testShouldUseEmptyRunSpecByDefault() {
         assertThat(cfg.runSpec(), is(instanceOf(EmptyRunSpec.class)));
     }
-    
+
     @Test
     public void testShouldUseLimitedRunSpecWhenProvidedWIthSpec() {
         cfg = new Config("test", "some:spec");

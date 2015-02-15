@@ -27,6 +27,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Server extends Named {
+
     private final String address;
     private final Set<Fileset> filesets;
     private final String user;
@@ -40,12 +41,12 @@ public class Server extends Named {
 
     public Set<Fileset> filesets() {
         return filesets;
-    }   
-    
+    }
+
     public String address() {
         return address;
     }
-    
+
     public Set<Script> scripts() {
         return null;
     }
@@ -68,8 +69,8 @@ public class Server extends Named {
             return false;
         }
         final Server other = (Server) obj;
-        return Objects.equals(this.address(), other.address()) 
+        return Objects.equals(this.address(), other.address())
                 && Objects.equals(this.filesets(), other.filesets())
                 && Objects.equals(this.name(), other.name());
-    }    
+    }
 }
