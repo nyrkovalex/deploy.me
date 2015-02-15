@@ -1,0 +1,30 @@
+{
+    "first": {
+        "servers": {
+            "localhost": {
+                "address": "localhost",
+                "user": "user",
+                "filesets": [ "development" ]
+            }
+        },
+        "filesets": {
+            "development": {
+                "config.cfg": "/tmp"
+            }
+        }
+    },
+    "second": {
+        "servers": {
+            "local": {
+                "address": "127.0.0.1",
+                "user": "user",
+                "filesets": [ "scripts" ]
+            }
+        },
+        "filesets": {
+            "scripts": {
+                "script.sh": "/tmp"
+            }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+#! /bin/bash
+
+DEPLOY_ME_HOME=~/Projects/deploy.me/target
+cwd=$(pwd)
+
+cd $DEPLOY_ME_HOME
+
+java -jar deploy.me.jar $cwd "$@"
